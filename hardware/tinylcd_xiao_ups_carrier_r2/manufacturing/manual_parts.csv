@@ -1,0 +1,7 @@
+Qty,Part,Notes
+1,Keystone 1042 18650 holder,SMD tabs plus alignment posts; install with positive end at board + marking
+2,1x7 2.54mm female socket headers,For removable XIAO ESP32-C6
+1,1x11 2.54mm male pin header,Straight vertical; mates with existing female ribbon connector
+1,Seeed Studio XIAO ESP32-C6,Solder 1x7 male headers to the XIAO before inserting
+1,Single 18650 Li-ion cell,3.6/3.7V reputable unprotected cell; confirm holder fit and polarity
+4,M3 screws and standoffs,Optional; four 3.2mm mounting holes

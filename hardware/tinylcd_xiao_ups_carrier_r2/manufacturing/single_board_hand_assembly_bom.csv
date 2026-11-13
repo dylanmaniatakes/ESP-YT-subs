@@ -1,0 +1,25 @@
+Category,Qty Needed,Suggested Order Qty,Designators,Description,Package,Selected Part,Supplier,Order Code,URL,Hand-assembly note
+Capacitor,2,10,"C1,C2",10uF 10V X5R ceramic capacitor,0805,Kyocera AVX 0805ZD106MAT2A,LCSC,C2170995,https://www.lcsc.com/product-detail/image/0805ZD106MAT2A_C2170995.html,"In-stock substitute for the original short-stock C141033; non-polarized"
+Capacitor,1,100,C3,100nF 50V X7R ceramic capacitor,0603,Yageo CC0603KRX7R9BB104,LCSC,C14663,https://www.lcsc.com/product-detail/C14663.html,Non-polarized; LCSC commonly sells this part in 100-piece minimums
+Diode,1,20,D1,3A 40V Schottky diode,SMA,SS34,LCSC,C908680,https://www.lcsc.com/product-detail/C908680.html,Polarized; align cathode band to PCB marking
+LED,1,100,D2,Red indicator LED,0603,KT-0603R,LCSC,C2286,https://www.lcsc.com/product-detail/C2286.html,Polarized; verify orientation before soldering
+LED,1,5,D3,Green indicator LED,0603,ROHM SMLD12EN1WT86,LCSC,C5336487,https://www.lcsc.com/product-detail/C5336487.html,"In-stock substitute for C72043; polarized; verify orientation"
+Fuse,1,10,F1,1.1A hold 16V resettable PTC fuse,1206,LUTE 1206L110/16NR,LCSC,C7542961,https://www.lcsc.com/product-detail/C7542961.html,In-stock 1206 electrical replacement for unavailable C46641027 and depleted C523825
+MOSFET,2,20,"Q1,Q3",P-channel MOSFET -30V,SOT-23,Alpha & Omega AO3401A,LCSC,C700954,https://www.lcsc.com/product-image/C700954.html,Confirm pin 1/orientation marker
+MOSFET,1,10,Q2,Dual N-channel battery-protection MOSFET,SOT-23-6,TECH PUBLIC FS8205A,LCSC,C2830320,https://www.lcsc.com/product-detail/mosfets_tech-public-fs8205a_C2830320.html,Confirm pin 1/orientation marker
+Resistor,1,100,R1,3.0k 1% resistor,0603,FH RS-03K3001FT,LCSC,C118392,https://www.lcsc.com/product-detail/C118392.html,In-stock substitute for C2889377 and C177659; sets TP4056 charge current near 400mA
+Resistor,1,10,R2,8.2k 0.1% resistor,0603,Yageo RT0603BRD078K2L,LCSC,C861589,https://www.lcsc.com/product-detail/C861589.html,Tighter-tolerance in-stock substitute for depleted C606177
+Resistor,2,100,"R3,R4",2.2k 1% resistor,0603,UNI-ROYAL 0603WAF2201T5E,LCSC,C4190,https://www.lcsc.com/product-detail/C4190.html,Non-polarized
+Resistor,2,100,"R5,R8",1M 1% resistor,0603,UNI-ROYAL 0603WAF1004T5E,LCSC,C22935,https://www.lcsc.com/product-detail/C22935.html,Non-polarized
+Resistor,1,100,R6,100 ohm 1% resistor,0603,Viking CR-03FL7--100R,LCSC,C216798,https://www.lcsc.com/product-detail/C216798.html,In-stock substitute for depleted C22775; non-polarized
+Resistor,1,100,R7,1k 1% resistor,0603,UNI-ROYAL 0603WAF1001T5E,LCSC,C21190,https://www.lcsc.com/product-detail/C21190.html,Non-polarized
+Switch,1,1,S1,SPDT right-angle slide switch,SMD,C&K JS102011SAQN,LCSC,C221660,https://www.lcsc.com/product-detail/C221660.html,Large anchor tabs need generous flux and heat
+Thermistor,1,10,TH1,10k B3950 1% NTC thermistor,0603,HNTC HNTC0603-103F3950FB,LCSC,C49247666,https://www.lcsc.com/product-image/C49247666.html,Place near the cell holder as drawn
+Charger IC,1,5,U1,1-cell linear Li-ion charger 4.2V,ESOP-8 exposed pad,TOPPOWER TP4056-42-ESOP8,LCSC,C16581,https://www.lcsc.com/product-detail/C16581.html?s_z=n_TP4056,"Hidden ground/thermal pad must be soldered; use paste and hot plate/hot air"
+Protection IC,1,20,U2,1-cell Li-ion protection controller,SOT-23-6,Fortune DW01A,LCSC,C351410,https://www.lcsc.com/product-detail/Battery-Management-ICs_PUOLOP_C351410.html,Confirm pin 1/orientation marker
+Battery holder,1,1,B1,Single 18650 holder,SMD with alignment posts,Keystone 1042,DigiKey,36-1042-ND,https://www.digikey.com/en/products/detail/keystone-electronics/1042/2745668,"Board footprint is for 1042; do not assume protected-cell 1042P is footprint-compatible"
+Socket,2,6,"J1,J2",1x7 2.54mm vertical female socket header,Through-hole,HCTL PM254-1-07-Z-8.5,LCSC,C2897370,https://www.lcsc.com/product-detail/Female-Headers_HCTL_C2897370.html,Use the XIAO as an alignment jig but remove it while finishing joints
+Header,1,10,J3,1x11 2.54mm straight male header,Through-hole,XFCN PZ254V-11-11P,LCSC,C2840011,https://www.lcsc.com/product-detail/pin-headers_xfcn-pz254v-11-11p_C2840011.html,Mates with the photographed display ribbon connector; verify pitch before ordering
+Controller,1,1,Module,Seeed Studio XIAO ESP32-C6,Module,Seeed Studio XIAO ESP32-C6,Seeed Studio,113991254,https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32C6-p-5884.html,Solder the supplied 1x7 male headers to the XIAO before plugging it into J1/J2
+Battery,1,1,Cell,3.6V 3500mAh flat-top unprotected 18650,18650,Samsung INR18650-35E,18650 Battery Store,Samsung 35E,https://www.18650batterystore.com/products/samsung-35e-18650-3500mah-8a-battery,"Use only a reputable undamaged cell; observe polarity; never charge unattended"
+Hardware,4,4,"H1,H2,H3,H4",M3 screws and standoffs,3.2mm PCB holes,Generic,Local or preferred supplier,N/A,,Optional mechanical mounting hardware

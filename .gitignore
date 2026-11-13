@@ -1,0 +1,20 @@
+# macOS metadata
+__pycache__/
+.DS_Store
+
+# Local build output and private device images
+build/
+firmware/**/build/
+*.bin
+*.elf
+*.map
+*.zip
+
+# Never publish captured device state or old backups
+backups/
+
+# Superseded hardware revision
+hardware/tinylcd_xiao_ups_carrier/
+
+# Generated hardware previews; use the editable KiCad project instead
+hardware/tinylcd_xiao_ups_carrier_r2/renders/

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="1180" viewBox="0 0 1900 1180">
+  <defs>
+    <style>
+      .title { font: 700 42px Arial, sans-serif; fill: #f4f7fb; }
+      .sub { font: 600 24px Arial, sans-serif; fill: #a9bbcc; }
+      .label { font: 700 22px Arial, sans-serif; fill: #f4f7fb; }
+      .small { font: 600 18px Arial, sans-serif; fill: #c8d3dd; }
+      .pin { fill: #d7b45a; stroke: #fff0ad; stroke-width: 3; }
+      .unused { fill: #59636d; stroke: #87929d; stroke-width: 2; }
+      .wire { fill: none; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect width="1800" height="1100" fill="#101820"/>
+  <text x="900" y="62" text-anchor="middle" class="title">TinyLCD P9 → XIAO ESP32-C6</text>
+  <text x="900" y="101" text-anchor="middle" class="sub">BOTTOM VIEW • USB-C FACING UP • 3.3 V LOGIC ONLY</text>
+
+  <!-- TinyLCD block -->
+  <rect x="55" y="150" width="410" height="820" rx="28" fill="#233746" stroke="#5f7d90" stroke-width="4"/>
+  <text x="260" y="195" text-anchor="middle" class="label">TinyLCD 480C_TP</text>
+  <text x="260" y="224" text-anchor="middle" class="small">P9 connector</text>
+
+  <!-- P9 labels and pins -->
+  <g class="small" text-anchor="end">
+    <text x="385" y="257">1  3V3</text><circle cx="430" cy="250" r="12" class="pin"/>
+    <text x="385" y="322">2  RS / D-C</text><circle cx="430" cy="315" r="12" class="pin"/>
+    <text x="385" y="387">3  MOSI</text><circle cx="430" cy="380" r="12" class="pin"/>
+    <text x="385" y="452">4  CS</text><circle cx="430" cy="445" r="12" class="pin"/>
+    <text x="385" y="517">5  SCLK</text><circle cx="430" cy="510" r="12" class="pin"/>
+    <text x="385" y="582">6  RST</text><circle cx="430" cy="575" r="12" class="pin"/>
+    <text x="385" y="647">7  BL — NC</text><circle cx="430" cy="640" r="12" class="unused"/>
+    <text x="385" y="712">8  GND</text><circle cx="430" cy="705" r="12" class="pin"/>
+    <text x="385" y="777">9  T_IRQ</text><circle cx="430" cy="770" r="12" class="pin"/>
+    <text x="385" y="842">10  T_CS</text><circle cx="430" cy="835" r="12" class="pin"/>
+    <text x="385" y="907">11  T_DOUT</text><circle cx="430" cy="900" r="12" class="pin"/>
+  </g>
+
+  <!-- XIAO underside -->
+  <rect x="1180" y="170" width="500" height="760" rx="48" fill="#184e43" stroke="#62b39d" stroke-width="5"/>
+  <text x="1430" y="895" text-anchor="middle" class="label">XIAO ESP32-C6</text>
+  <text x="1430" y="923" text-anchor="middle" class="small">UNDERSIDE / solder-pad view</text>
+  <rect x="1320" y="178" width="220" height="96" rx="16" fill="#bcc4ca" stroke="#eef3f6" stroke-width="4"/>
+  <rect x="1370" y="178" width="120" height="35" rx="8" fill="#3e474d"/>
+  <text x="1430" y="320" text-anchor="middle" class="label">USB-C ↑</text>
+
+  <!-- XIAO left row: mirrored in bottom view -->
+  <g class="small">
+    <circle cx="1180" cy="350" r="14" class="unused"/><text x="1215" y="357">VBUS / 5V — NC</text>
+    <circle cx="1180" cy="440" r="14" class="pin"/><text x="1215" y="447">GND</text>
+    <circle cx="1180" cy="530" r="14" class="pin"/><text x="1215" y="537">3V3</text>
+    <circle cx="1180" cy="620" r="14" class="pin"/><text x="1215" y="627">D10 / GPIO18</text>
+    <circle cx="1180" cy="710" r="14" class="pin"/><text x="1215" y="717">D9 / GPIO20</text>
+    <circle cx="1180" cy="800" r="14" class="pin"/><text x="1215" y="807">D8 / GPIO19</text>
+    <circle cx="1180" cy="890" r="14" class="unused"/><text x="1215" y="873">D7 — NC</text>
+  </g>
+
+  <!-- XIAO right row: mirrored in bottom view -->
+  <g class="small" text-anchor="end">
+    <circle cx="1680" cy="350" r="14" class="pin"/><text x="1645" y="357">D0 / GPIO0</text>
+    <circle cx="1680" cy="440" r="14" class="pin"/><text x="1645" y="447">D1 / GPIO1</text>
+    <circle cx="1680" cy="530" r="14" class="pin"/><text x="1645" y="537">D2 / GPIO2</text>
+    <circle cx="1680" cy="620" r="14" class="pin"/><text x="1645" y="627">D3 / GPIO21</text>
+    <circle cx="1680" cy="710" r="14" class="pin"/><text x="1645" y="717">D4 / GPIO22</text>
+    <circle cx="1680" cy="800" r="14" class="unused"/><text x="1645" y="807">D5 — NC</text>
+    <circle cx="1680" cy="890" r="14" class="unused"/><text x="1645" y="873">D6 — NC</text>
+  </g>
+
+  <!-- Wires to left row -->
+  <path d="M430 250 H560 V530 H1180" class="wire" stroke="#ef5350"/>
+  <path d="M430 380 H650 V620 H1180" class="wire" stroke="#ff9f43"/>
+  <path d="M430 445 H740 V710 H1180" class="wire" stroke="#d66efd"/>
+  <path d="M430 510 H830 V800 H1180" class="wire" stroke="#ffd54f"/>
+  <path d="M430 705 H920 V440 H1180" class="wire" stroke="#222a31"/>
+
+  <!-- Wires to right row, routed beneath board -->
+  <path d="M430 315 H530 V1000 H1735 V350 H1680" class="wire" stroke="#42a5f5"/>
+  <path d="M430 575 H610 V1025 H1760 V620 H1680" class="wire" stroke="#66bb6a"/>
+  <path d="M430 770 H690 V1050 H1785 V440 H1680" class="wire" stroke="#26c6da"/>
+  <path d="M430 835 H770 V1070 H1810 V530 H1680" class="wire" stroke="#ab47bc"/>
+  <path d="M430 900 H850 V1088 H1835 V710 H1680" class="wire" stroke="#ec407a"/>
+
+  <!-- endpoint overlays -->
+  <g fill="#f4f7fb">
+    <circle cx="430" cy="250" r="5"/><circle cx="1180" cy="530" r="6"/>
+    <circle cx="430" cy="315" r="5"/><circle cx="1680" cy="350" r="6"/>
+    <circle cx="430" cy="380" r="5"/><circle cx="1180" cy="620" r="6"/>
+    <circle cx="430" cy="445" r="5"/><circle cx="1180" cy="710" r="6"/>
+    <circle cx="430" cy="510" r="5"/><circle cx="1180" cy="800" r="6"/>
+    <circle cx="430" cy="575" r="5"/><circle cx="1680" cy="620" r="6"/>
+    <circle cx="430" cy="705" r="5"/><circle cx="1180" cy="440" r="6"/>
+    <circle cx="430" cy="770" r="5"/><circle cx="1680" cy="440" r="6"/>
+    <circle cx="430" cy="835" r="5"/><circle cx="1680" cy="530" r="6"/>
+    <circle cx="430" cy="900" r="5"/><circle cx="1680" cy="710" r="6"/>
+  </g>
+
+  <rect x="505" y="130" width="610" height="72" rx="18" fill="#4b2a16" stroke="#ffad66" stroke-width="3"/>
+  <text x="810" y="162" text-anchor="middle" class="label" fill="#ffd2ad">Do not connect P9 BL or XIAO VBUS</text>
+  <text x="810" y="190" text-anchor="middle" class="small">Power the display from the XIAO 3V3 pin only</text>
+</svg>
