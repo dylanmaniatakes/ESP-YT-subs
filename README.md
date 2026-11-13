@@ -34,6 +34,18 @@ The display wiring is documented in [`hardware/xiao_c6_tinylcd_bottom_wiring.svg
 
 Do not put your API key in the source code. The device asks for it during first-run setup and stores it locally.
 
+## GitHub Pages web flasher
+
+After you push this repository to GitHub:
+
+1. Open the repository on GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Save the setting. GitHub will automatically run the included workflow and publish the flasher.
+5. Open the URL shown on the Pages settings page.
+
+The root page redirects to the flasher. Because GitHub Pages serves over HTTPS, the Web Serial device chooser works normally in Chrome or Brave.
+
 ## Easy local web flashing
 
 For a no-command-line install:

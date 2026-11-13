@@ -2,6 +2,17 @@
 
 This folder contains a small, offline-capable web page for flashing the ESP-YT subscriber counter to a Seeed Studio XIAO ESP32-C6.
 
+## Deploy on GitHub Pages
+
+The repository includes a GitHub Actions workflow that publishes this flasher to GitHub Pages.
+
+1. Push the repository to GitHub.
+2. In the repository, open **Settings → Pages**.
+3. Set **Source** to **GitHub Actions**.
+4. Save. GitHub will deploy the flasher automatically.
+
+The root Pages URL redirects to this page. Both the hosted flasher and the local-server option below are supported.
+
 ## Start the local server
 
 From the repository root:

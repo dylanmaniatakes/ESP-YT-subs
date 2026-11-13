@@ -1,0 +1,75 @@
+name: Deploy flasher to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Assemble flasher site
+        run: |
+          mkdir -p _site/web
+          cp -R web/. _site/web/
+          cp -R releases _site/releases
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>ESP-YT Subscriber Counter Flasher</title>
+              <style>
+                body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+                       background: #0d1117; color: #f4f7fb;
+                       font: 16px/1.5 system-ui, sans-serif; }
+                a { color: #7fc8ff; }
+              </style>
+            </head>
+            <body>
+              <main>
+                <h1>ESP-YT Subscriber Counter Flasher</h1>
+                <p>
+                  If this page does not continue automatically,
+                  <a href="./web/">open the web flasher</a>.
+                </p>
+              </main>
+              <script>
+                location.replace("./web/");
+              </script>
+            </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
