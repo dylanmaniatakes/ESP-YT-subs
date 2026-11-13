@@ -34,6 +34,22 @@ The display wiring is documented in [`hardware/xiao_c6_tinylcd_bottom_wiring.svg
 
 Do not put your API key in the source code. The device asks for it during first-run setup and stores it locally.
 
+## Easy local web flashing
+
+For a no-command-line install:
+
+1. Start the local flasher:
+
+   ```sh
+   python3 -m http.server 8000
+   ```
+
+2. Open <http://127.0.0.1:8000/web/> in Chrome or Edge on the computer connected to the XIAO.
+3. Click **Start flashing** and choose the XIAO serial port.
+4. Wait for the progress bar to finish, then unplug and reconnect the device.
+
+The flasher verifies the bundled `releases/esp_yt_subscriber_counter.merged.bin` checksum before writing anything, and it will only flash an ESP32-C6.
+
 ## Build and upload
 
 ### Arduino IDE
@@ -84,6 +100,8 @@ The editable KiCad project is in [`hardware/tinylcd_xiao_ups_carrier_r2/`](hardw
 firmware/esp_yt_subscriber_counter/  Counter firmware
 firmware/xiao_c6_ili9488_test/       Display diagnostic firmware
 hardware/                            Wiring diagram and KiCad carrier project
+releases/                           Prebuilt merged firmware for the web flasher
+web/                                Local Web Serial flasher
 libraries/                           Bundled Adafruit graphics libraries
 ```
 

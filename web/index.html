@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ESP-YT Subscriber Counter — Web Flasher</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>ESP-YT Subscriber Counter</h1>
+        <p>Local web flasher for the Seeed Studio XIAO ESP32-C6</p>
+      </header>
+
+      <section id="browser-check" aria-live="polite">
+        <p id="browser-message">Checking browser support…</p>
+      </section>
+
+      <section class="panel">
+        <ol class="steps">
+          <li>Connect the XIAO ESP32-C6 with a USB-C data cable.</li>
+          <li>Click <strong>Start flashing</strong>.</li>
+          <li>Choose the XIAO serial port when your browser asks.</li>
+          <li>Wait for the progress bar to finish.</li>
+        </ol>
+
+        <button id="start" type="button">Start flashing</button>
+        <button id="retry" type="button" class="secondary" hidden>Try again</button>
+
+        <div class="progress-shell" hidden>
+          <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+          <p id="progress-text">0%</p>
+        </div>
+
+        <p id="status" aria-live="polite">Ready.</p>
+        <p class="hint">
+          If the browser cannot find the board, hold the XIAO’s <strong>BOOT</strong> button while plugging it in, then click <strong>Try again</strong>.
+        </p>
+      </section>
+
+      <section class="panel log-panel">
+        <h2>Flasher log</h2>
+        <pre id="log"></pre>
+      </section>
+
+      <section class="notes">
+        <h2>After flashing</h2>
+        <ol>
+          <li>Unplug and reconnect the XIAO.</li>
+          <li>Join the <code>ESP-YT-Setup</code> Wi-Fi network.</li>
+          <li>Open <code>http://192.168.4.1</code> and finish setup.</li>
+        </ol>
+        <p>
+          Need the wiring diagram? See
+          <a href="../hardware/xiao_c6_tinylcd_bottom_wiring.svg">the XIAO-to-TinyLCD connection guide</a>.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
