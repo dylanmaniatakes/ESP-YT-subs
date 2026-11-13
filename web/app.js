@@ -100,17 +100,22 @@ async function startFlash() {
     return;
   }
 
+  if (window.location.protocol === "file:") {
+    setStatus("Open this page through the local server at http://127.0.0.1:8000/web/ instead of loading the HTML file directly.");
+    retryButton.hidden = false;
+    startButton.disabled = true;
+    return;
+  }
+
   resetUi();
   setBusy(true);
   startButton.textContent = "Flashing…";
-  setStatus("Starting…");
+  setStatus("Choose your XIAO ESP32-C6 in the browser prompt…");
 
   let transport = null;
   try {
-    const firmware = await fetchVerifiedFirmware();
-
-    setStatus("Choose your XIAO ESP32-C6 in the browser prompt…");
     const port = await navigator.serial.requestPort();
+    const firmware = await fetchVerifiedFirmware();
 
     transport = new Transport(port, false);
     const loader = new ESPLoader({
@@ -174,10 +179,15 @@ async function startFlash() {
 startButton.addEventListener("click", startFlash);
 retryButton.addEventListener("click", startFlash);
 
-if ("serial" in navigator) {
+if (window.location.protocol === "file:") {
+  browserMessage.textContent = "This page must be opened through the local server, not directly from disk.";
+  browserMessage.classList.add("error");
+  startButton.disabled = true;
+} else if ("serial" in navigator) {
   browserMessage.textContent = "Web Serial is supported in this browser.";
   browserMessage.classList.add("ok");
 } else {
   browserMessage.textContent = "This browser does not support Web Serial. Please use Chrome or Edge on a desktop computer.";
   browserMessage.classList.add("error");
+  startButton.disabled = true;
 }

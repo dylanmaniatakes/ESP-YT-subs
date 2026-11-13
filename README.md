@@ -45,6 +45,7 @@ For a no-command-line install:
    ```
 
 2. Open <http://127.0.0.1:8000/web/> in Chrome or Edge on the computer connected to the XIAO.
+   Do not open `web/index.html` directly from Finder or VS Code. Web Serial requires the local-server URL.
 3. Click **Start flashing** and choose the XIAO serial port.
 4. Wait for the progress bar to finish, then unplug and reconnect the device.
 

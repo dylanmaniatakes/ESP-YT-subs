@@ -14,7 +14,7 @@ Open:
 
 <http://127.0.0.1:8000/web/>
 
-Use Chrome or Edge on the same computer that has the XIAO connected.
+Use Chrome or Brave on the same computer that has the XIAO connected. Do not open `web/index.html` directly from Finder or VS Code; Web Serial requires the local-server URL.
 
 ## What the page does
 
