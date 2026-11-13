@@ -2,76 +2,87 @@
 
 A compact, Wi-Fi-connected YouTube subscriber counter for a Seeed Studio **XIAO ESP32-C6** and a 480×320 SPI display with an ILI9488-compatible controller and XPT2046/ADS7846-compatible touch controller.
 
-The counter shows the public subscriber count, total views, public video count, connection status, and an Eastern-time clock. It stores Wi‑Fi and YouTube API credentials only in the ESP32's internal preferences; no credentials are committed to this repository.
+The device shows the public subscriber count, total views, public video count, connection status, and an Eastern-time clock. It stores Wi-Fi and YouTube API credentials only in the ESP32's internal preferences; no credentials are committed to this repository.
 
-## Features
-
-- Public YouTube channel statistics using YouTube Data API v3
-- Captive Wi‑Fi setup portal on first boot
-- Automatic retry after network, DNS, time, or API failures
-- Single tap to switch between the subscriber dashboard and clock
-- Double tap to rotate the display 180°
-- BOOT-button reset for saved settings
-- Optional KiCad carrier board for a cleaner build
-
-## Hardware you need
+## What you need
 
 - Seeed Studio XIAO ESP32-C6
 - 480×320 SPI display with an ILI9488-compatible controller and XPT2046/ADS7846-compatible touch controller
-- USB-C data cable
+- USB-C **data** cable — not a charge-only cable
 - Jumper wires or the optional KiCad carrier board
 - 3.3 V logic; do **not** connect a 5 V-only display directly
 
 The display wiring is documented in [`hardware/xiao_c6_tinylcd_bottom_wiring.svg`](hardware/xiao_c6_tinylcd_bottom_wiring.svg).
 
-## Software setup
+## Choose how to install the firmware
 
-1. Install [Arduino IDE 2](https://www.arduino.cc/en/software) or [Arduino CLI](https://arduino.github.io/arduino-cli/).
-2. Install the **esp32** board package.
-3. Select the **XIAO_ESP32C6** board.
-4. Use the bundled Adafruit GFX and Adafruit BusIO libraries in [`libraries/`](libraries/), or install those two libraries through the Arduino Library Manager.
-5. Create a YouTube Data API v3 key from [Google Cloud Console](https://console.cloud.google.com/), and restrict it to YouTube Data API v3.
+There are three ways to put the firmware on the XIAO:
 
-Do not put your API key in the source code. The device asks for it during first-run setup and stores it locally.
+1. **Use the hosted web flasher** — easiest; no command line.
+2. **Use the local web flasher** — useful offline or for testing.
+3. **Build and upload with Arduino** — useful if you want to modify the firmware.
 
-## GitHub Pages web flasher
+### Option 1: Hosted web flasher (recommended)
 
-After you push this repository to GitHub:
+This is the easiest path if you only want to use the project. You do not need Arduino, a terminal, or a custom build.
 
-1. Open the repository on GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Save the setting. GitHub will automatically run the included workflow and publish the flasher.
-5. Open the URL shown on the Pages settings page.
+Web Serial is the browser feature that lets a web page ask permission to use the XIAO’s USB serial connection. Chrome, Brave, and Edge support it.
 
-The root page redirects to the flasher. Because GitHub Pages serves over HTTPS, the Web Serial device chooser works normally in Chrome or Brave.
+Open this page on the computer connected to the XIAO:
 
-## Easy local web flashing
+[Open the ESP-YT web flasher](https://dylanmaniatakes.github.io/ESP-YT-subs/web/)
 
-For a no-command-line install:
+Then:
 
-1. Start the local flasher:
+1. Connect the XIAO to the computer with a USB-C data cable.
+2. Click **Start flashing**.
+3. When the browser asks for a serial port, select the XIAO.
+4. Wait for the progress bar to reach 100%.
+5. Unplug and reconnect the XIAO.
+
+A few things are normal:
+
+- The browser may list other serial devices, including Bluetooth devices. Choose only the XIAO.
+- If the XIAO does not appear, hold its **BOOT** button while plugging it in, then click **Try again**.
+- The flasher checks the bundled firmware’s SHA-256 checksum and refuses to flash a non-ESP32-C6 chip.
+
+Because the hosted page is served over HTTPS, the browser can open the normal Web Serial device chooser.
+
+### Option 2: Local web flasher
+
+Use this if you want an offline copy or do not want to use the hosted page.
+
+1. Start a small local web server from the repository root:
 
    ```sh
    python3 -m http.server 8000
    ```
 
-2. Open <http://127.0.0.1:8000/web/> in Chrome or Edge on the computer connected to the XIAO.
-   Do not open `web/index.html` directly from Finder or VS Code. Web Serial requires the local-server URL.
-3. Click **Start flashing** and choose the XIAO serial port.
+2. Open:
+
+   <http://127.0.0.1:8000/web/>
+
+3. Click **Start flashing** and choose the XIAO in the browser prompt.
 4. Wait for the progress bar to finish, then unplug and reconnect the device.
 
-The flasher verifies the bundled `releases/esp_yt_subscriber_counter.merged.bin` checksum before writing anything, and it will only flash an ESP32-C6.
+Do **not** open `web/index.html` directly from Finder or VS Code. Web Serial needs the `http://127.0.0.1` origin, so the device chooser will not appear from a `file://` page.
 
-## Build and upload
+### Option 3: Build and upload with Arduino
 
-### Arduino IDE
+Use this if you want to change the firmware.
+
+1. Install [Arduino IDE 2](https://www.arduino.cc/en/software) or [Arduino CLI](https://arduino.github.io/arduino-cli/).
+2. Install the **esp32** board package.
+3. Select the **XIAO_ESP32C6** board.
+4. Use the bundled Adafruit GFX and Adafruit BusIO libraries in [`libraries/`](libraries/), or install those two libraries through the Arduino Library Manager.
+
+#### Arduino IDE
 
 1. Open `firmware/esp_yt_subscriber_counter/esp_yt_subscriber_counter.ino`.
 2. Select **XIAO_ESP32C6**.
 3. Click **Verify**, then **Upload**.
 
-### Arduino CLI
+#### Arduino CLI
 
 ```sh
 arduino-cli compile \
@@ -90,13 +101,34 @@ Replace `/dev/YOUR_SERIAL_PORT` with your actual serial port.
 
 ## First-run setup
 
-1. Power the counter.
-2. Join the `ESP-YT-Setup` Wi‑Fi hotspot with password `setup-subs`.
-3. Open `http://192.168.4.1/`.
-4. Select your Wi‑Fi network, enter its password, enter your YouTube channel handle, and paste your API key.
-5. Save. The counter reboots, joins your network, and begins displaying your public channel statistics.
+The firmware does not contain your Wi-Fi password, YouTube handle, or API key.
 
-Hold the BOOT button while powering on to erase saved settings and return to the setup hotspot.
+1. Power the counter.
+2. Join the `ESP-YT-Setup` Wi-Fi hotspot.
+3. Enter the hotspot password: `setup-subs`.
+4. Open `http://192.168.4.1/`.
+5. Select your Wi-Fi network, enter its password, enter your YouTube channel handle, and paste your YouTube Data API v3 key.
+6. Save.
+
+The counter reboots, joins your network, and starts showing your public channel statistics.
+
+To reset the saved setup later, hold the XIAO’s **BOOT** button while powering it on. The device will clear its saved settings and return to the setup hotspot.
+
+## Features
+
+- Public YouTube channel statistics using YouTube Data API v3
+- Captive Wi-Fi setup portal on first boot
+- Automatic retry after network, DNS, time, or API failures
+- Single tap to switch between the subscriber dashboard and clock
+- Double tap to rotate the display 180°
+- BOOT-button reset for saved settings
+- Optional KiCad carrier board for a cleaner build
+
+## API key notes
+
+Create a YouTube Data API v3 key from [Google Cloud Console](https://console.cloud.google.com/), and restrict it to YouTube Data API v3.
+
+Do not put the API key in the source code. The device asks for it during first-run setup and stores it locally.
 
 ## Optional KiCad carrier board
 
